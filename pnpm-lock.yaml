@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  modern-screenshot:
+    specifier: ^4.4.37
+    version: 4.4.37
+
 devDependencies:
   '@nuxt/devtools':
     specifier: latest
@@ -4037,6 +4042,10 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.3.2
     dev: true
+
+  /modern-screenshot@4.4.37:
+    resolution: {integrity: sha512-D4u8dndnFRe4OyWDiUj/N0BNtViqQrdVkj0YSBM9aV7uqZegnIKVUNYN0l7AbXj9iKS5AubAap2/HctB+Lg5kg==}
+    dev: false
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}

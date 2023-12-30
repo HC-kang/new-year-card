@@ -67,7 +67,7 @@ let email = 'test@test11111.com';
 let password = 'test1234';
 
 const loginWithEmail = async () => {
-  const response = await $fetch('http://localhost:3003/api/users/login', {
+  const response = await $fetch(`${config.public.apiBaseUrl}/users/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

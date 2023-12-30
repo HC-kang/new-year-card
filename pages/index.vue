@@ -1,7 +1,6 @@
 <template>
   <div>
-    Hello World!
-    {{ accessToken ? accessToken : 'no access token' }}
+    Hello~~
   </div>
 </template>
 <script setup lang="ts">

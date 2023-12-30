@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       kakaoRedirectUri: process.env.KAKAO_REDIRECT_URI,
       googleClientId: process.env.GOOGLE_CLIENT_ID,
       googleRedirectUri: process.env.GOOGLE_REDIRECT_URI,
+      apiBaseUrl: process.env.API_BASE_URL,
     }
   }
 });
