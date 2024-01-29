@@ -1,0 +1,16 @@
+import Link from 'next/link';
+
+export default function Header() {
+  return (
+    <header className='flex justify-between items-center p-4'>
+      <Link href='/'>
+        <h1 className='text-3xl font-bold'>{"Happy New Year"}</h1>
+      </Link>
+      <nav className='flex gap-4'>
+        <Link href='/'>Home</Link>
+        <Link href='/new'>New</Link>
+        <Link href='/signIn'>SignIn</Link>
+      </nav>
+    </header>
+  );
+}
