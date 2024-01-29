@@ -1,9 +1,9 @@
-import NewYearCard from '@/components/NewYearCard';
+import HomeSection from '../components/HomeSection';
 
 export default function Home() {
   return (
     <>
-      <NewYearCard />
+      <HomeSection />
     </>
   );
 }
