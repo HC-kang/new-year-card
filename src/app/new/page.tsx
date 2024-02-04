@@ -1,5 +1,5 @@
-export default function New() {
-  return (
-    <div>New Card</div>
-  );
+import NewCard from '@/components/NewCard';
+
+export default function NewPage() {
+  return <NewCard />;
 }

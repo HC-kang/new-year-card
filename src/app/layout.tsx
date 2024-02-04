@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { AuthProvider } from '../context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex flex-col w-full max-w-screen-2xl mx-auto`}
       >
-        <Header />
-        <main className='grow bg-slate-50'>{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className='grow bg-slate-50'>{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
