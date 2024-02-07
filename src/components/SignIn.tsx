@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 
 export default function SignIn() {
   const kakaoRestApiKey = '3cbe533168d3c42d4e692132b5822087';
-  const kakaoRedirectUri = 'http://localhost:3000/api/v1/auth/kakao/callback';
+  const kakaoRedirectUri = 'https://node.blue-rabbit.kr/api/v1/auth/kakao/callback';
   const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoRestApiKey}&redirect_uri=${kakaoRedirectUri}`;
 
   const auth = useAuth();
