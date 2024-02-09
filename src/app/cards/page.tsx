@@ -1,9 +1,11 @@
 import CardList from '@/components/CardList';
+import { fetchImagesData } from '@/service/images';
 
-export default function CardsPage() {
+export default async function CardsPage() {
+  const cards = await fetchImagesData();
   return (
     <section>
-        <CardList />
+      <CardList cards={cards} />
     </section>
   );
 }
