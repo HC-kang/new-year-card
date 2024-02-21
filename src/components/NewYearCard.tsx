@@ -9,7 +9,6 @@ export default function NewYearCard() {
           alt='New Year Image'
           width={700}
           height={700}
-          objectFit='cover'
         />
         <div className='p-8'>
           <div className='uppercase tracking-wide text-sm text-indigo-500 font-semibold'>

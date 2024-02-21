@@ -1,23 +1,18 @@
 'use client';
 
-import { useAuth } from '@/context/AuthContext';
+import { signIn } from 'next-auth/react';
 
 export default function SignIn() {
-  const kakaoRestApiKey = '3cbe533168d3c42d4e692132b5822087';
-  const kakaoRedirectUri = 'http://localhost:3000/api/v1/auth/kakao/callback';
-  // const kakaoRedirectUri = 'https://node.blue-rabbit.kr/api/v1/auth/kakao/callback';
-  const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoRestApiKey}&redirect_uri=${kakaoRedirectUri}`;
-
-  const auth = useAuth();
   return (
     <section>
-      {auth.accessToken}
-      <a
-        href={kakaoLoginUrl}
-        className='inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-      >
-        Kakao로 로그인하기
-      </a>
+      <div>
+        <button
+          className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+          onClick={() => signIn('kakao', { callbackUrl: '/' })}
+        >
+          kakao login
+        </button>
+      </div>
     </section>
   );
 }

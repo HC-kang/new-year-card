@@ -1,14 +1,13 @@
 'use client';
 
-import { useAuth } from '@/context/AuthContext';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import ColorButton from './ui/ColorButton';
 
 export default function Header() {
-  const auth = useAuth();
-  const logout = () => {
-    auth.setAccessToken(null);
-    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  }
+  const { data: session } = useSession();
+  const user = session?.user;
+
   return (
     <header className='bg-white shadow-md p-4'>
       <div className='max-w-7xl mx-auto flex justify-between items-center'>
@@ -28,18 +27,10 @@ export default function Header() {
           <Link href='/new' className='text-gray-600 hover:text-indigo-500'>
             New
           </Link>
-          {auth.accessToken ? (
-            <Link
-              href='/'
-              onClick={logout}
-              className='text-gray-600 hover:text-indigo-500'
-            >
-              Logout
-            </Link>
+          {session ? (
+            <ColorButton text='Sign Out' onClick={signOut} />
           ) : (
-            <Link href='/signIn' className='text-gray-600 hover:text-indigo-500'>
-              Login
-            </Link>
+            <ColorButton text='Sign In' onClick={signIn} />
           )}
         </nav>
       </div>

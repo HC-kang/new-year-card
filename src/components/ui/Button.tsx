@@ -1,21 +1,20 @@
 type Props = {
-  children: React.ReactNode;
-  //   size: 'small' | 'medium' | 'large';
-  onClick?: () => void;
-  className?: string;
+  text: string;
+  onClick: () => void;
+  red?: boolean;
+  disabled?: boolean;
 };
 
-export default function Button({ children, onClick, ...props }: Props) {
-  const { className } = props;
+export default function Button({ text, onClick, red, disabled = false }: Props) {
   return (
     <button
-      {...props}
-      className={`w-60 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded border border-blue-700 shadow ${
-        className || ''
-      }`}
+      className={`border-none rounded-md py-2 px-8 text-white font-bold leading-4 ${
+        red ? 'bg-red-500' : 'bg-sky-500'
+      } ${disabled && 'opacity-80'}`}
       onClick={onClick}
+      disabled={disabled}
     >
-      {children}
+      {text}
     </button>
   );
 }

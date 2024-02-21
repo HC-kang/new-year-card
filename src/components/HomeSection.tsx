@@ -10,7 +10,7 @@ export default function HomeSection() {
     <section>
         <div className='bg-gray-100 flex flex-col justify-center items-center h-screen'>
       <NewYearCard />
-      <Button
+      {/* <Button
         onClick={() => console.log('Click!!')}
         className='mt-10'
       >
@@ -21,7 +21,7 @@ export default function HomeSection() {
           새 이미지 생성하러 가기
           <ArrowRight className='ml-2' />
         </Link>
-      </Button>
+      </Button> */}
       </div>
     </section>
   );
