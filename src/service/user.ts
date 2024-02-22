@@ -13,22 +13,7 @@ export const addUserKakao = async (accessToken: string) => {
       }),
     }
   );
-  const resAccessToken = await response.json();
-  const cookie = response.headers.get('set-cookie');
-  const refreshToken = parseCookie(cookie);
-  return { ...resAccessToken, refreshToken };
+  
+  return await response.json();
 };
 
-const parseCookie = (cookie: string | null) => {
-  if (!cookie) return null;
-
-  const cookies = cookie.split(';');
-
-  for (const c of cookies) {
-    const parts = c.trim().split('=');
-    if (parts[0] === 'refreshToken') {
-      return parts[1];
-    }
-  }
-  return null;
-};

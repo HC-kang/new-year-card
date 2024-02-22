@@ -14,5 +14,7 @@ declare module 'next-auth' {
     image?: string;
     accessToken?: string;
     refreshToken?: string;
+    accessTokenExpires?: number;
+    refreshTokenExpires?: number;
   }
 }

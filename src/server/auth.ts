@@ -24,8 +24,13 @@ export const authOptions: NextAuthOptions = {
       const tokens = await addUserKakao(account.access_token);
       if (!tokens) return false;
 
-      user.accessToken = tokens.accessToken;
-      user.refreshToken = tokens.refreshToken;
+      user.accessToken = tokens.accessToken.token;
+      user.accessTokenExpires = tokens.accessToken.expiresAt;
+      user.refreshToken = tokens.refreshToken.token;
+      user.refreshTokenExpires = tokens.refreshToken.expiresAt;
+
+      console.log('@@@@@@@ user: ', user);
+      
       return true;
     },
     async jwt({ token, user, account }) {
