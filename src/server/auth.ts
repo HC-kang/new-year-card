@@ -1,5 +1,5 @@
 import { Constants } from '@/libs/Constants';
-import { addUserKakao } from '@/service/user';
+import { addUserKakao as registerOrLoginWithKakao } from '@/service/user';
 import { NextAuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 
@@ -20,24 +20,27 @@ export const authOptions: NextAuthOptions = {
     async signIn({ account, user }) {
       if (!account || !account.access_token) return false;
       if (account.provider != 'kakao') return false;
-      if (!user) return false;
-      const tokens = await addUserKakao(account.access_token);
-      if (!tokens) return false;
 
+      const tokens = await registerOrLoginWithKakao(account.access_token);
+      if (!tokens) return false;
+      
+      if (!user) return false;
       user.accessToken = tokens.accessToken.token;
       user.accessTokenExpires = tokens.accessToken.expiresAt;
       user.refreshToken = tokens.refreshToken.token;
       user.refreshTokenExpires = tokens.refreshToken.expiresAt;
-
-      console.log('@@@@@@@ user: ', user);
       
       return true;
     },
-    async jwt({ token, user, account }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.accessToken = user.accessToken;
+        token.accessTokenExpires = user.accessTokenExpires;
+        token.refreshToken = user.refreshToken;
+        token.refreshTokenExpires = user.refreshTokenExpires;
       }
-      console.log('jwt token: ', token);
+      
       return token;
     },
     async session({ session, token }) {
@@ -49,7 +52,8 @@ export const authOptions: NextAuthOptions = {
           id: token.id as string,
         };
       }
-      session.token = token;
+
+      session.accessToken = token.accessToken as string;
       return session;
     },
   },

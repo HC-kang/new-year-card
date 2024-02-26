@@ -4,6 +4,7 @@ declare module 'next-auth' {
   interface Session {
     user: AuthUser;
     token: any;
+    accessToken: string;
   }
 
   interface User {
@@ -16,5 +17,13 @@ declare module 'next-auth' {
     refreshToken?: string;
     accessTokenExpires?: number;
     refreshTokenExpires?: number;
+  }
+
+  interface Token {
+    id: string;
+    accessToken: string;
+    accessTokenExpires: number;
+    refreshToken: string;
+    refreshTokenExpires: number;
   }
 }
