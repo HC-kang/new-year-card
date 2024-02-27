@@ -1,5 +1,5 @@
 import { Constants } from '@/libs/Constants';
-import { addUserKakao as registerOrLoginWithKakao } from '@/service/user';
+import { refreshAccessToken, registerOrLoginWithKakao } from '@/service/user';
 import { NextAuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 
@@ -39,6 +39,15 @@ export const authOptions: NextAuthOptions = {
         token.accessTokenExpires = user.accessTokenExpires;
         token.refreshToken = user.refreshToken;
         token.refreshTokenExpires = user.refreshTokenExpires;
+      }
+
+      if (typeof token?.accessToken === 'string' && typeof token.accessTokenExpires === 'number') {
+        const now = Date.now();
+        if (now > token.accessTokenExpires) {
+          const newTokenInfo = await refreshAccessToken(token.accessToken);
+          token.accessToken = newTokenInfo.accessToken.token;
+          token.accessTokenExpires = newTokenInfo.accessToken.expiresAt;
+        }
       }
       
       return token;
